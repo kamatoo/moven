@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fastapi-template"
+version = "1.0.0"
+description = "Production-leaning FastAPI starter with PostgreSQL, Alembic, and tests."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "alembic>=1.16.4",
+    "email-validator>=2.2.0",
+    "fastapi>=0.116.1",
+    "pwdlib[argon2]>=0.2.1",
+    "PyJWT>=2.10.1",
+    "python-multipart>=0.0.20",
+    "pydantic-settings>=2.10.1",
+    "sqlalchemy>=2.0.42",
+    "psycopg[binary]>=3.2.9",
+    "uvicorn[standard]>=0.35.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "httpx>=0.28.1",
+    "pytest>=8.4.1",
+    "pytest-cov>=6.2.1",
+    "ruff>=0.12.7",
+]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
